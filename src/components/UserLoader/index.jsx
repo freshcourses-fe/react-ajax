@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { getUsers } from '../../api';
 import Spinner from '../Spinner';
+import UserCard from '../UserCard';
+import styles from './UserLoader.module.scss';
 
 class UserLoader extends Component {
   constructor(props) {
@@ -30,6 +32,9 @@ class UserLoader extends Component {
 
   load = () => {
     const { currentPage } = this.state;
+    this.setState({
+      isLoading: true,
+    });
     getUsers({ page: currentPage, results: 10 }).then((data) => {
       this.setState({
         users: data.results,
@@ -51,14 +56,16 @@ class UserLoader extends Component {
     return (
       <>
         {isLoading && <Spinner />}
-        {users.length && (
+        {Boolean(users.length) && !isLoading && (
           <>
-            <button onClick={() => this.changePage('prev')}>Prev page</button>
-            <button onClick={() => this.changePage('next')}>Next page</button>
+            <div className={styles.btnContainer}>
+              <button onClick={() => this.changePage('prev')}>Prev page</button>
+              <button onClick={() => this.changePage('next')}>Next page</button>
+            </div>
             <ul>
               {users.map((user) => (
                 <li key={user.login.uuid}>
-                  <pre>{JSON.stringify(user, null, 4)}</pre>
+                  <UserCard user={user} />
                 </li>
               ))}
             </ul>

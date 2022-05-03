@@ -1,3 +1,4 @@
+import './reset.css';
 import './App.css';
 import UserLoader from './components/UserLoader';
 

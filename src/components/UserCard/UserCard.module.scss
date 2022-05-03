@@ -1,0 +1,26 @@
+.container {
+  padding: 20px;
+  max-width: 400px;
+  min-width: 300px;
+  border: 2px solid black;
+  border-radius: 20px;
+  margin: 10px;
+}
+
+.imgWrapper {
+  position: relative;
+  width: 128px;
+  height: 128px;
+  border-radius: 50%;
+  overflow: hidden;
+  margin: 0 auto;
+
+  > img {
+    position: absolute;
+    inset: 0;
+    width: inherit;
+    height: inherit;
+    object-fit: cover;
+    object-position: center;
+  }
+}
