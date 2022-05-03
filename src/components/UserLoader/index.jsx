@@ -8,6 +8,7 @@ class UserLoader extends Component {
     this.state = {
       users: [],
       isLoading: true,
+      error: null,
       currentPage: 1,
     };
     this.isRendered = false;
@@ -29,7 +30,7 @@ class UserLoader extends Component {
 
   load = () => {
     const { currentPage } = this.state;
-    getUsers({ page: currentPage, test: '12345' }).then((data) => {
+    getUsers({ page: currentPage, results: 10 }).then((data) => {
       this.setState({
         users: data.results,
         isLoading: false,
@@ -67,5 +68,11 @@ class UserLoader extends Component {
     );
   }
 }
+
+/*
+  приделать в копонент USerLoader обработку ошибок при загрузке
+  пользоателей
+  при ошибке отображать её текст
+*/
 
 export default UserLoader;
