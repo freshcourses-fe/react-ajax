@@ -1,11 +1,12 @@
 import queryString from 'query-string';
+import config from '../configs';
 
 export function getUsers(options) {
   const defaultOptions = {
-    seed: 'fe2021-2',
+    seed: config.DEFAULT_SEED,
     page: 1,
-    results: 20,
-    inc: ['gender', 'name', 'login', 'picture'],
+    results: config.RESULTS,
+    inc: config.DEFAULT_USER_DATA,
   };
 
   const resultingOptions = {

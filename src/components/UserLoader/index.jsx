@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { getUsers } from '../../api';
 import Spinner from '../Spinner';
 
-
 class UserLoader extends Component {
   constructor(props) {
     super(props);
@@ -30,13 +29,12 @@ class UserLoader extends Component {
 
   load = () => {
     const { currentPage } = this.state;
-      getUsers({page: currentPage, test: '12345'})
-      .then((data) => {
-        this.setState({
-          users: data.results,
-          isLoading: false,
-        });
+    getUsers({ page: currentPage, test: '12345' }).then((data) => {
+      this.setState({
+        users: data.results,
+        isLoading: false,
       });
+    });
   };
 
   changePage = (direction) => {
