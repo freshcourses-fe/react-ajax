@@ -32,15 +32,20 @@ class UserLoader extends Component {
 
   load = () => {
     const { currentPage } = this.state;
-    this.setState({
-      isLoading: true,
-    });
-    getUsers({ page: currentPage, results: 10 }).then((data) => {
-      this.setState({
-        users: data.results,
-        isLoading: false,
+    getUsers({ page: currentPage, results: 5000 })
+      .then((data) => {
+        this.setState({
+          users: data.results,
+        });
+      })
+      .catch((e) => {
+        this.setState({ error: e });
+      })
+      .finally(() => {
+        this.setState({
+          isLoading: false,
+        });
       });
-    });
   };
 
   changePage = (direction) => {
@@ -56,7 +61,7 @@ class UserLoader extends Component {
     return (
       <>
         {isLoading && <Spinner />}
-        {Boolean(users.length) && !isLoading && (
+        {users.length && !isLoading && (
           <>
             <div className={styles.btnContainer}>
               <button onClick={() => this.changePage('prev')}>Prev page</button>
