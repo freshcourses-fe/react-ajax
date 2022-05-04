@@ -27,6 +27,8 @@ function App() {
           path="/contacts"
           render={(utilProps) => <Contacts {...utilProps} />}
         />
+
+        <Route path="*" component={NotFound} />
       </Switch>
     </BrowserRouter>
   );
@@ -42,4 +44,11 @@ const Contacts = (props) => {
   return <h1>CONTACTS PAGE</h1>;
 };
 
+const NotFound = () => {
+  return (
+    <div>
+      <h1>PAGE DOES NOT EXISTS</h1>
+    </div>
+  );
+};
 export default App;
