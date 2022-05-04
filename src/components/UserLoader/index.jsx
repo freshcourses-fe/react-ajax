@@ -32,7 +32,7 @@ class UserLoader extends Component {
 
   load = () => {
     const { currentPage } = this.state;
-    getUsers({ page: currentPage, results: 5000 })
+    getUsers({ page: currentPage, results: 10 })
       .then((response) => {
         this.setState({
           users: response.data.results,
@@ -57,12 +57,13 @@ class UserLoader extends Component {
   };
 
   render() {
-    const { users, isLoading } = this.state;
+    const { users, isLoading, error } = this.state;
 
     return (
       <>
         {isLoading && <Spinner />}
-        {users.length && !isLoading && (
+        {error && <div>ERROR HAPPENED</div>}
+        {Boolean(users.length) && !isLoading && (
           <>
             <div className={styles.btnContainer}>
               <button onClick={() => this.changePage('prev')}>Prev page</button>
