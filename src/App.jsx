@@ -1,46 +1,45 @@
 import './reset.css';
 import './App.css';
-import { BrowserRouter, Switch, Route, Link } from 'react-router-dom';
+import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import UserLoader from './components/UserLoader';
+import Header from './components/Header';
 
 function App() {
   return (
     <BrowserRouter>
-      <nav>
-        <ul>
-          <li>
-            <Link to="/">Home</Link>
-          </li>
-          <li>
-            <Link to="/about">About</Link>
-          </li>
-          <li>
-            <Link to="/contacts">Contacts</Link>
-          </li>
-        </ul>
-      </nav>
+      <Route exact component={Header} />
 
       <Switch>
         <Route path="/" exact>
-          <Home />
+          {(utilProps) => {
+            return (
+              <>
+                <Home {...utilProps} />
+                <p>test</p>
+                <hr />
+              </>
+            );
+          }}
         </Route>
-        <Route path="/about/test">
-          <AboutTest />
-        </Route>
-        <Route path="/about">
-          <About />
-        </Route>
-        <Route path="/contacts">
-          <Contacts />
-        </Route>
+        <Route path="/about" component={About} />
+
+        <Route
+          path="/contacts"
+          render={(utilProps) => <Contacts {...utilProps} />}
+        />
       </Switch>
     </BrowserRouter>
   );
 }
 
-const Home = () => <h1>HOME PAGE</h1>;
-const AboutTest = () => <h1>ABOUT Test PAGE</h1>;
-const About = () => <h1>ABOUT PAGE</h1>;
-const Contacts = () => <h1>CONTACTS PAGE</h1>;
+const Home = (props) => {
+  return <h1>HOME PAGE</h1>;
+};
+const About = (props) => {
+  return <h1>ABOUT PAGE</h1>;
+};
+const Contacts = (props) => {
+  return <h1>CONTACTS PAGE</h1>;
+};
 
 export default App;
