@@ -3,25 +3,20 @@ import './App.css';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import UserLoader from './components/UserLoader';
 import Header from './components/Header';
+import HomePage from './pages/HomePage';
+import AboutPage from './pages/AboutPage';
 
 function App() {
   return (
     <BrowserRouter>
+      {/* так обычно не делают (именно факт того что компонент а не страница) */}
       <Route exact component={Header} />
 
       <Switch>
         <Route path="/" exact>
-          {(utilProps) => {
-            return (
-              <>
-                <Home {...utilProps} />
-                <p>test</p>
-                <hr />
-              </>
-            );
-          }}
+          {(utilProps) => <HomePage {...utilProps} />}
         </Route>
-        <Route path="/about" component={About} />
+        <Route path="/about" component={AboutPage} />
 
         <Route
           path="/contacts"
@@ -34,12 +29,6 @@ function App() {
   );
 }
 
-const Home = (props) => {
-  return <h1>HOME PAGE</h1>;
-};
-const About = (props) => {
-  return <h1>ABOUT PAGE</h1>;
-};
 const Contacts = (props) => {
   return <h1>CONTACTS PAGE</h1>;
 };
