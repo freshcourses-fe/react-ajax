@@ -33,13 +33,14 @@ class UserLoader extends Component {
   load = () => {
     const { currentPage } = this.state;
     getUsers({ page: currentPage, results: 5000 })
-      .then((data) => {
+      .then((response) => {
         this.setState({
-          users: data.results,
+          users: response.data.results,
         });
       })
       .catch((e) => {
-        this.setState({ error: e });
+        console.log(e);
+        this.setState({ error: e.response.data });
       })
       .finally(() => {
         this.setState({
