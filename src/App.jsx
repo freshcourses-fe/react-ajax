@@ -11,6 +11,8 @@ import PrivateRoute from './components/PrivateRoute';
 import Spinner from './components/Spinner';
 import UserLoader from './components/UserLoader';
 import CounterPage from './pages/Counter';
+import LaptopsLoader from './components/LaptopsLoader';
+import LoaderPage from './pages/Loader';
 // import ProfilePage from './pages/Profile';
 const ProfilePage = React.lazy(() => import('./pages/Profile'));
 
@@ -41,6 +43,8 @@ class App extends React.Component {
             </Route>
 
             <Route path="/counter" component={CounterPage} />
+            <Route path="/laptops" component={LaptopsLoader} />
+            <Route path="/loader" component={LoaderPage} />
 
             <PrivateRoute
               roles={['admin', 'moder']}
