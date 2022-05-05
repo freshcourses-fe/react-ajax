@@ -9,6 +9,8 @@ import NotFoundPage from './pages/NotFoundPage';
 import ContactsPage from './pages/ContactsPage';
 import PrivateRoute from './components/PrivateRoute';
 import Spinner from './components/Spinner';
+import UserLoader from './components/UserLoader';
+import CounterPage from './pages/Counter';
 // import ProfilePage from './pages/Profile';
 const ProfilePage = React.lazy(() => import('./pages/Profile'));
 
@@ -23,7 +25,7 @@ class App extends React.Component {
         {/* так обычно не делают (именно факт того что компонент а не страница) */}
         <Route exact component={Header} />
 
-        <Suspense fallback={<Spinner />}>
+        <Suspense fallback={<div>LOADING ...</div>}>
           <Switch>
             <Route path="/" exact>
               {(utilProps) => <HomePage {...utilProps} />}
@@ -34,11 +36,16 @@ class App extends React.Component {
               path="/contacts"
               render={(utilProps) => <ContactsPage {...utilProps} />}
             />
+            <Route path="/users">
+              <UserLoader />
+            </Route>
+
+            <Route path="/counter" component={CounterPage} />
 
             <PrivateRoute
               roles={['admin', 'moder']}
               user={this.state.user}
-              route={{ path: '/profile' }}
+              route={{ path: '/profile', exact: true }}
             >
               <ProfilePage />
             </PrivateRoute>

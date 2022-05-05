@@ -9,7 +9,7 @@ const Header = (props) => {
   ) : (
     <header>
       <nav>
-        <ul>
+        <ul style={{display: 'flex', justifyContent: 'space-around'}}>
           <li>
             <Link to="/">Home</Link>
           </li>
@@ -21,6 +21,12 @@ const Header = (props) => {
           </li>
           <li>
             <Link to="/profile">Profile</Link>
+          </li>
+          <li>
+            <Link to="/counter">Counter</Link>
+          </li>
+          <li>
+            <Link to="/users">Users</Link>
           </li>
         </ul>
       </nav>
