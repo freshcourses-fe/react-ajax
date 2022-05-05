@@ -19,6 +19,9 @@ const Header = (props) => {
           <li>
             <Link to="/contacts">Contacts</Link>
           </li>
+          <li>
+            <Link to="/profile">Profile</Link>
+          </li>
         </ul>
       </nav>
     </header>
