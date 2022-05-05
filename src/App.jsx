@@ -1,6 +1,6 @@
+import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom';
 import './reset.css';
 import './App.css';
-import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import Header from './components/Header';
 import HomePage from './pages/HomePage';
 import AboutPage from './pages/AboutPage';
@@ -24,12 +24,12 @@ function App() {
           render={(utilProps) => <ContactsPage {...utilProps} />}
         />
 
+        <Redirect to="/about" from='/info'/>
+
         <Route path="*" component={NotFoundPage} />
       </Switch>
     </BrowserRouter>
   );
 }
-
-
 
 export default App;
